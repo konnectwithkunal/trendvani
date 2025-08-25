@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TrendVaani Marketing Agency Design System */
+
+@layer base {
+  :root {
+    /* Modern dark blue gradient theme inspired by Navistride */
+    --background: 223 47% 11%; /* Deep blue base */
+    --background-secondary: 223 47% 8%; /* Darker blue */
+    --foreground: 0 0% 100%; /* White text */
+
+    --card: 223 47% 11%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 223 47% 11%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 25 95% 56%; /* #F68B2B - TrendVaani orange */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 223 47% 15%; /* Slightly lighter blue for cards */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 223 47% 9%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 74 83% 58%; /* #B2EF43 - Lime green for CTA */
+    --accent-foreground: 0 0% 0%;
+
+    --success: 74 83% 58%; /* #B2EF43 - Lime green */
+    --success-foreground: 0 0% 0%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 223 47% 20%;
+    --input: 223 47% 15%;
+    --ring: 25 95% 56%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens for TrendVaani - Navistride inspired */
+    --gradient-primary: linear-gradient(135deg, hsl(25 95% 56%), hsl(30 100% 60%));
+    --gradient-accent: linear-gradient(135deg, hsl(74 83% 58%), hsl(80 85% 62%));
+    --gradient-background: linear-gradient(135deg, hsl(223 47% 11%), hsl(223 47% 8%), hsl(220 45% 6%));
+    --gradient-hero: linear-gradient(180deg, hsl(223 47% 11%) 0%, hsl(223 47% 8%) 50%, hsl(220 45% 6%) 100%);
+    --glow-primary: 0 0 30px hsl(25 95% 56% / 0.3);
+    --glow-accent: 0 0 30px hsl(74 83% 58% / 0.3);
+    --shadow-elevation: 0 10px 40px hsl(0 0% 0% / 0.4);
+    --dot-pattern: radial-gradient(circle, hsl(25 95% 56% / 0.1) 1px, transparent 1px);
+  }
+
+  /* Remove dark class - we're always dark */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply text-foreground font-sans antialiased;
+    background: var(--gradient-background);
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: var(--dot-pattern);
+    background-size: 30px 30px;
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 0;
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-foreground font-bold;
+  }
+}
+
+@layer components {
+  .hero-glow {
+    box-shadow: var(--glow-primary);
+  }
+  
+  .card-elevation {
+    box-shadow: var(--shadow-elevation);
+  }
+  
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer utilities {
+  .animated-background {
+    background: var(--gradient-hero);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+  }
+  
+  .floating-dots {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 50%, hsl(25 95% 56% / 0.1) 2px, transparent 2px),
+      radial-gradient(circle at 80% 20%, hsl(25 95% 56% / 0.08) 1px, transparent 1px),
+      radial-gradient(circle at 40% 80%, hsl(25 95% 56% / 0.06) 3px, transparent 3px);
+    background-size: 100px 100px, 60px 60px, 120px 120px;
+    animation: float 15s ease-in-out infinite;
+  }
+
+  .floating-trends {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .hover-scale {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Animation classes */
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out both;
+  }
+
+  /* Custom scrollbar for popup */
+  .popup-scroll::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .popup-scroll::-webkit-scrollbar-track {
+    background: hsl(var(--secondary));
+    border-radius: 4px;
+  }
+  
+  .popup-scroll::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+  }
+  
+  .popup-scroll::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary) / 0.8);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-1deg);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
